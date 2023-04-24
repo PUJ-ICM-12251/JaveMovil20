@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "924160766526",
+    "project_id": "javemovil2-0",
+    "storage_bucket": "javemovil2-0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924160766526:android:e6e989d95d27800019176f",
+        "android_client_info": {
+          "package_name": "com.example.javemovil20"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "924160766526-jhfmisnkfqnb8sgpoe1gokqno3m85lkb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBySLvJSYJlOneV4sFnK6ByGtdJ80g5p8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "924160766526-jhfmisnkfqnb8sgpoe1gokqno3m85lkb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

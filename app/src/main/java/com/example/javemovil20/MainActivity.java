@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         btnentrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent miIntent = new Intent(MainActivity.this, MenuActivity.class);
+                //Intent miIntent = new Intent(MainActivity.this, MenuActivity.class);
+                Intent miIntent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(miIntent);
             }
         });
