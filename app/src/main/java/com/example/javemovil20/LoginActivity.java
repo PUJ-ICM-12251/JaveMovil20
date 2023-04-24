@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.javemovil20.databinding.ActivityLoginBinding;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passEditText;
     private Button buttonLogIn;
+    private TextView registerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = binding.emailEditText;
         passEditText = binding.passEditText;
         buttonLogIn = binding.loginButton;
+        registerTextView = binding.registerTextView;
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -51,6 +54,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signInUser(emailEditText.getText().toString(), passEditText.getText().toString());
+            }
+        });
+
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getBaseContext(), RegistrationActivity.class));
             }
         });
     }
