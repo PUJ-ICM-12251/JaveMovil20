@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signInUser(emailEditText.getText().toString(), passEditText.getText().toString());
+                logInUser(emailEditText.getText().toString(), passEditText.getText().toString());
             }
         });
 
@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
-    private void signInUser(String email, String password) {
+    private void logInUser(String email, String password) {
         if (validateForm()) {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

@@ -5,38 +5,81 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+
+import com.example.javemovil20.databinding.ActivityMainBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnentrar;
-    Button btnregistrar;
+    private FirebaseAuth mAuth;
+
+    private ActivityMainBinding binding;
+    Button buttonEdificios;
+    Button buttonNews;
+    Button buttonLoc;
+    ImageButton buttonQR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        btnentrar = (Button)findViewById(R.id.btnentrar);
-        btnregistrar = (Button)findViewById(R.id.btnregistrar);
+        buttonEdificios = binding.buttonEdificios;
+        buttonNews = binding.buttonNewsletter;
+        buttonLoc = binding.buttonLocation;
+        buttonQR = binding.imageButtonQR;
 
-        btnentrar.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+
+        /*
+        buttonEdificios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent miIntent = new Intent(MainActivity.this, MenuActivity.class);
-                Intent miIntent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(miIntent);
+                //startActivity(new Intent(getBaseContext(), ListEdificiosActivity.class));
             }
         });
-
-        btnregistrar.setOnClickListener(new View.OnClickListener() {
+        buttonNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent miIntent = new Intent(MainActivity.this, NewUserActivity.class);
-                startActivity(miIntent);
+                //startActivity(new Intent(getBaseContext(), NewsletterActivity.class));
             }
         });
+        buttonNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(new Intent(getBaseContext(), LocationActivity.class));
+            }
+        });
+        buttonNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //startActivity(new Intent(getBaseContext(), QRActivity.class));
+            }
+        });
+        */
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemClicked = item.getItemId();
+        if (itemClicked == R.id.logoutOption) {
+            mAuth.signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
