@@ -22,11 +22,11 @@
 
     <ImageView
         android:id="@+id/Foto"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_below="@+id/Nombre"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="10dp"/>
     <TextView
         android:id="@+id/NumeroPlano"
         android:layout_width="wrap_content"
@@ -79,10 +79,20 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/Informacion"
         android:layout_centerInParent="true"
-        android:backgroundTint="@color/yellow_f8"
-        android:textColor="@color/black"
         android:layout_marginTop="11dp"
-        android:text="@string/boton" />
+        android:backgroundTint="@color/yellow_f8"
+        android:text="@string/boton"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/buttonLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver ubicación en el mapa"
+        android:layout_below="@id/button"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"/>
 
 
 </RelativeLayout>

@@ -50,20 +50,22 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //startActivity(new Intent(getBaseContext(), NewsletterActivity.class));
             }
-        });
-        buttonNews.setOnClickListener(new View.OnClickListener() {
+        });*/
+        buttonLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getBaseContext(), LocationActivity.class));
+                Intent newIntent = new Intent(getBaseContext(), LocationActivity.class);
+                newIntent.putExtra("redirectionFrom", "MainActivity");
+                startActivity(newIntent);
             }
         });
-        buttonNews.setOnClickListener(new View.OnClickListener() {
+        buttonQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getBaseContext(), QRActivity.class));
+                startActivity(new Intent(getBaseContext(), QRActivity.class));
             }
         });
-        */
+
     }
 
     @Override

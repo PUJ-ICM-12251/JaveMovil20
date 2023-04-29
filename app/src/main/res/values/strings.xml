@@ -13,5 +13,6 @@
     <string name="Num">Numero Edificio:</string>
     <string name="Info">Información: </string>
     <string name="boton">Reservas </string>
+    <string name="title_activity_location">LocationActivity</string>
 
 </resources>
