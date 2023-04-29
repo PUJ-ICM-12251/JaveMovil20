@@ -4,120 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundv2"
     tools:context=".MainActivity"
     android:padding="10dp">
-    <!--textview -->
-    <TextView
-        android:id="@+id/tvtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+
+
+    <Button
+        android:id="@+id/buttonEdificios"
+        android:layout_width="wrap_content"
+        android:layout_height="154dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:text="Iniciar Sesión"
-        android:textColor="@color/white"
-        android:textSize="35sp"
-        android:textStyle="bold" />
-    <!--edittext 1 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/eduser"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvtitle"
+        android:text="Edificios"
+        android:textSize="30sp"
+        android:backgroundTint="@color/blue_23"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/buttonNewsletter"
+        android:layout_width="wrap_content"
+        android:layout_height="154dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/buttonEdificios"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:textColorHint="@color/white"
-        app:startIconDrawable="@drawable/ic_username">
+        android:text="Newsletter"
+        android:textSize="30sp"
+        android:backgroundTint="@color/blue_23"
+        android:textColor="@color/white"/>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edusername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Usuario"
-            android:inputType="text"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
 
-    <!--edittext 2 -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edpassword"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/eduser"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="15dp"
-        android:textColorHint="@color/white"
-        app:endIconMode="password_toggle"
-        app:startIconDrawable="@drawable/ic_lock">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edcontra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_username"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <!--Button entrar-->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnentrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edpassword"
+    <Button
+        android:id="@+id/buttonLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="154dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/buttonNewsletter"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/design_default_color_secondary_variant"
-        android:onClick="entrar"
-        android:text="ENTRAR"
-        android:textColor="@color/white" />
-    <!--edittext 2 -->
-    <TextView
-        android:id="@+id/tvoption"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="crear cuenta ó restablecer"
-        android:textColor="@color/white"
-        android:layout_below="@+id/btnentrar"/>
-    <!--layout para los dos botones -->
-    <LinearLayout
-        android:layout_width="401dp"
-        android:layout_height="256dp"
-        android:layout_below="@+id/tvoption"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="77dp"
+        android:text="Mi ubicación"
+        android:textSize="30sp"
+        android:backgroundTint="@color/blue_23"
+        android:textColor="@color/white"/>
+
+    <ImageButton
+        android:id="@+id/imageButtonQR"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/qr_image"
+        android:scaleType="fitCenter"
+        android:padding="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/buttonLocation"
         android:layout_centerHorizontal="true"
-        android:gravity="center">
-        <!--boton registrar cuenta -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnregistrar"
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/design_default_color_secondary_variant"
-            android:onClick="RegistroData"
-            android:text="Crear"
-            android:textColor="@color/white" />
-        <!--boton restablecer cuenta -->
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/design_default_color_secondary_variant"
-            android:text="Restablecer"
-            android:textColor="@color/white" />
-    </LinearLayout>
+        android:background="@color/yellow_f8"/>
 </RelativeLayout>
