@@ -37,13 +37,14 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        /*
+
         buttonEdificios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getBaseContext(), ListEdificiosActivity.class));
+                startActivity(new Intent(getBaseContext(), ListEdificiosActivity.class));
             }
         });
+        /*
         buttonNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

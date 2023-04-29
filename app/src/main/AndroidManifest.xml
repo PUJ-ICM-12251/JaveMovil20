@@ -12,6 +12,15 @@
         android:theme="@style/Theme.JaveMovil20"
         tools:targetApi="31">
         <activity
+            android:name=".ListaReservasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleEdificioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListEdificiosActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
@@ -19,6 +28,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

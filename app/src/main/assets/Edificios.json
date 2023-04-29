@@ -1,0 +1,53 @@
+{
+  "TotalCount": 5,
+  "Edificios": [
+    {
+      "Name": "Pensar-Casa Navarro",
+      "NumEd": "01",
+      "Informacion": "Casa Navarro es un edificio universitario en Bogotá, Región Andina ubicado en Carrera 7. Casa Navarro está situada circa de la iglesia Capilla San Ignacio y del teatro Auditorio Luis Carlos Galán.",
+      "Foto": "https://www.javeriana.edu.co/image/journal/article?img_id=10451318&t=1549915126967",
+      "Lat": "4.626636835049897",      
+      "Lon": "-74.06533168926015"
+
+    },
+    {
+      "Name": "Fernando Baron",
+      "NumEd": "02",
+      "Informacion": "Este edificio tiene una cafeteria en el primer piso, ahí se compran los famosos burritos, tiene dos sotanos con lugares para estudiar y hacer trabajos, tiene varias impresoras y en su mayoria está compuesto por salones",
+      "Foto": "https://www.semana.com/resizer/QCyUSilswqVQniP010n1kcHokzU=/1200x800/filters:format(jpg):quality(50)/cloudfront-us-east-1.images.arcpublishing.com/semana/DTGSUSS2HFH4XDNZBQ3VHXHNJE.jpg",
+      "Lat": "4.626615689482569",      
+      "Lon": "-74.06373243253022"
+
+    },
+    {
+        
+      "Name": "Gabriel Giraldo",
+      "NumEd": "03",
+      "Informacion": "Este edificio tiene un piso para almorzar con restaurante, se conoce por ser el edificio de derecho y queda al ladoo de artes",
+      "Foto": "https://cpri.javeriana.edu.co/documents/1578159/1655663/edgiraldo1.jpg/1bcea80f-fb09-5fad-7991-30228439a600",
+      "Lat": "4.626713301740797",
+      "Lon": "-74.06468372973757"
+      
+    },
+    {
+        
+      "Name": "Ático",
+      "NumEd": "08",
+      "Informacion": "Este edificio es conocido por ser el de comunicación, tambien por el alquiler de equipos como camaras y demas",
+      "Foto": "https://www.javeriana.edu.co/recursosdb/2807168/2923149/img_historia.png/ab2de223-b8d6-049c-b933-6a24f75426e5?t=1627527253578",
+      "Lat": "4.626843675201762",      
+      "Lon": "-74.06489496533898"
+
+    },
+    {
+      "Name": "Jose Gabriel Maldonado",
+      "NumEd": "11",
+      "Informacion": "Este edificio era el antiguo edificio de ingenieria, ahora es adminitrativo de la facultad de ingenieria y dirección de carrera",
+      "Foto": "https://ingenieria.javeriana.edu.co/documents/1569590/7521680/ed_ing_ganapremio.jpg/72b01586-74f6-e266-0113-d2453a7338ca",
+      "Lat": "4.626885427514477",      
+      "Lon": "-74.0640300017327"
+
+        
+    }
+ ]
+}
