@@ -94,7 +94,7 @@ public class RegistrationActivity extends AppCompatActivity {
             passEditText2.setError(null);
         }
 
-        if(password.equals(password2)){
+        if(!password.equals(password2)){
             passEditText.setError("Las contraseñas no coinciden");
             passEditText2.setError("Las contraseñas no coinciden");
             valid = false;
