@@ -44,13 +44,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), ListEdificiosActivity.class));
             }
         });
-        /*
         buttonNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getBaseContext(), NewsletterActivity.class));
+                startActivity(new Intent(getBaseContext(), NewsletterActivity.class));
             }
-        });*/
+        });
         buttonLoc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

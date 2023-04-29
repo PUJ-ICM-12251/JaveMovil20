@@ -2,10 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-sdk tools:overrideLibrary="com.google.zxing.client.android" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
@@ -21,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JaveMovil20"
         tools:targetApi="31">
+        <activity
+            android:name=".NewsletterActivity"
+            android:exported="false" />
         <activity
             android:name=".QRActivity"
             android:exported="false" />
@@ -67,6 +74,12 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".CaptureActivityPortraint"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            tools:replace="screenOrientation" />
     </application>
 
 </manifest>
