@@ -82,6 +82,11 @@ public class MainActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
+        if(itemClicked == R.id.userOption){
+            Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 }
