@@ -19,10 +19,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.javemovil20.databinding.ActivityMainBinding;
 import com.example.javemovil20.databinding.ActivityUserProfileBinding;
+import com.example.javemovil20.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -37,11 +39,15 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private ActivityUserProfileBinding binding;
     private final int CAMERA_PERMISSION_ID = 101;
+    public static final String PATH_USERS="users/";
 
     private File photoFile;
     String cameraPerm = Manifest.permission.CAMERA;
     ImageView imageView;
     String currentPhotoPath;
+
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
 
     // Create a Cloud Storage reference from the app
     private StorageReference mStorageReference;
@@ -57,6 +63,20 @@ public class UserProfileActivity extends AppCompatActivity {
         initView();
         imageView = binding.imageView;
 
+        this.mStorageReference = FirebaseStorage.getInstance().getReference();
+        this.database = FirebaseDatabase.getInstance();
+
+
+        this.userEmail = getIntent().getStringExtra("userEmail");
+        this.loadData();
+
+
+        try {
+            this.downloadFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         binding.takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,13 +91,12 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        this.mStorageReference = FirebaseStorage.getInstance().getReference();
-        this.userEmail = getIntent().getStringExtra("userEmail");
-        try {
-            this.downloadFile();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        binding.saveInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveUserInfo();
+            }
+        });
 
 
     }
@@ -199,4 +218,24 @@ public class UserProfileActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void saveUserInfo(){
+
+        User editUser = new User();
+        editUser.setAge(Integer.parseInt(binding.editTextAge.toString()));
+        editUser.setCareer(binding.editTextCareer.toString());
+        editUser.setName(binding.editTextName.toString());
+        editUser.setLastName(binding.editTextLastName.toString());
+        editUser.setEmail(binding.emailEditText.toString());
+
+        String key = myRef.push().getKey();
+        myRef = database.getReference(PATH_USERS + key);
+        myRef.setValue(editUser);
+    }
+
+    private void loadData(){
+        binding.emailEditText.setText(this.userEmail);
+    }
+
+
 }

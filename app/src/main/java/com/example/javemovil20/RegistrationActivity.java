@@ -20,22 +20,28 @@ import android.widget.Toast;
 
 import com.example.javemovil20.databinding.ActivityLoginBinding;
 import com.example.javemovil20.databinding.ActivityRegistrationBinding;
+import com.example.javemovil20.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
     private ActivityRegistrationBinding binding;
     private EditText emailEditText;
     private EditText passEditText;
     private EditText passEditText2;
     private Button buttonSignIn;
     private TextView logInTextView;
+    public static final String PATH_USERS="users/";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +58,8 @@ public class RegistrationActivity extends AppCompatActivity {
         buttonSignIn = binding.registerButton;
 
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
 
         logInTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +122,17 @@ public class RegistrationActivity extends AppCompatActivity {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
                         FirebaseUser user = mAuth.getCurrentUser();
                         if(user!=null) {
+
+                            User newUser = new User();
+                            newUser.setEmail(email);
+                            newUser.setAge(0);
+                            newUser.setCareer("");
+                            newUser.setName("");
+                            newUser.setLastName("");
+
+                            String key = myRef.push().getKey();
+                            myRef = database.getReference(PATH_USERS + key);
+                            myRef.setValue(newUser);
                             // Update user Info
                             /*UserProfileChangeRequest.Builder upcrb = new UserProfileChangeRequest.Builder();
                             upcrb.setDisplayName(mUserName.getText().toString()+" "+mUserLastName.getText().toString());
