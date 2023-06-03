@@ -31,12 +31,12 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/saveImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="70dp"
-        android:text="Guardar"
+        android:text="Guardar IMG"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -97,12 +97,11 @@
         android:id="@+id/editInfoButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar información"
+        android:text="Guardar info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
-        android:layout_marginTop="20dp"
-        android:enabled="false"/>
+        android:layout_marginTop="20dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

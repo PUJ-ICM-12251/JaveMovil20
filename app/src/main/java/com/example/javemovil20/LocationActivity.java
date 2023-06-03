@@ -58,8 +58,14 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
     private ActivityLocationBinding binding;
 
     SensorManager sensorManager;
+    Sensor accelerometerSensor;
+    Sensor magnetometerSensor;
     Sensor lightSensor;
     SensorEventListener lightSensorListener;
+    SensorEventListener accelerMagetoListener;
+
+    float[] mGravity;
+    float[] mGeomagnetic;
 
     private static final String TAG = ActivityLocationBinding.class.getName();
     private Logger logger = Logger.getLogger(TAG);
@@ -87,6 +93,8 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
 
         // Initialize the sensors
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        magnetometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
         // Initialize th listener
@@ -108,6 +116,33 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
             public void onAccuracyChanged(Sensor sensor, int i) {}
         };
 
+        accelerMagetoListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER)
+                    mGravity = event.values;
+                if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD)
+                    mGeomagnetic = event.values;
+                if (mGravity != null && mGeomagnetic != null) {
+                    float R[] = new float[9];
+                    float I[] = new float[9];
+                    boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
+                    if (success) {
+                        float orientation[] = new float[3];
+                        SensorManager.getOrientation(R, orientation);
+                        float azimuth = orientation[0]; // orientation contains: azimuth, pitch and roll
+                        float pitch = orientation[1];
+                        float roll = orientation[2];
+                    }
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+
+            }
+
+        };
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -115,18 +150,22 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
         mapFragment.getMapAsync(this);
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(lightSensorListener,
                 lightSensor,
                 SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(accelerMagetoListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        sensorManager.registerListener(accelerMagetoListener, magnetometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(lightSensorListener);
+        sensorManager.unregisterListener(accelerMagetoListener);
     }
 
 

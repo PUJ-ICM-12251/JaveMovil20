@@ -21,6 +21,12 @@ import android.widget.Toast;
 
 import com.example.javemovil20.databinding.ActivityMainBinding;
 import com.example.javemovil20.databinding.ActivityUserProfileBinding;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,11 +35,17 @@ import java.util.Date;
 
 public class UserProfileActivity extends AppCompatActivity {
 
-     private ActivityUserProfileBinding binding;
+    private ActivityUserProfileBinding binding;
     private final int CAMERA_PERMISSION_ID = 101;
+
+    private File photoFile;
     String cameraPerm = Manifest.permission.CAMERA;
     ImageView imageView;
     String currentPhotoPath;
+
+    // Create a Cloud Storage reference from the app
+    private StorageReference mStorageReference;
+    private String userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +63,22 @@ public class UserProfileActivity extends AppCompatActivity {
                 startCamera(view);
             }
         });
+
+        binding.saveImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadFile();
+            }
+        });
+
+        this.mStorageReference = FirebaseStorage.getInstance().getReference();
+        this.userEmail = getIntent().getStringExtra("userEmail");
+        try {
+            this.downloadFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
@@ -95,7 +123,7 @@ public class UserProfileActivity extends AppCompatActivity {
         // Asegurarse de que hay una actividad de camara para manejar el intent
         if (takePictureIntent != null) {
             //Crear el archivo donde debería ir la foto
-            File photoFile = null;
+            photoFile = null;
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
@@ -130,5 +158,45 @@ public class UserProfileActivity extends AppCompatActivity {
             imageView.setImageURI(Uri.parse(currentPhotoPath));
             Toast.makeText(this, "Image capture successfully.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void uploadFile() {
+        // Uri file = Uri.fromFile(new File("path/to/images/image.jpg"));
+        if(photoFile != null){
+            Uri file = Uri.fromFile(this.photoFile);
+            StorageReference imageRef = mStorageReference.child("images/profile/" + this.userEmail.trim() + "/image.jpg");
+            imageRef.putFile(file)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Toast.makeText(UserProfileActivity.this, "Imagen guardada", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+
+                    }
+                });
+        }
+
+    }
+
+    private void downloadFile() throws IOException {
+        File localFile = File.createTempFile("images", "jpg");
+        StorageReference imageRef = mStorageReference.child("images/profile/" + this.userEmail.trim() + "/image.jpg");
+        imageRef.getFile(localFile)
+                .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        binding.imageView.setImageURI(Uri.fromFile(localFile));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle failed download
+
+                    }
+                });
     }
 }

@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Button buttonNews;
     Button buttonLoc;
     ImageButton buttonQR;
+    private String userEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         buttonQR = binding.imageButtonQR;
 
         mAuth = FirebaseAuth.getInstance();
+        this.userEmail = getIntent().getStringExtra("user");
 
 
         buttonEdificios.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if(itemClicked == R.id.userOption){
             Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+            intent.putExtra("userEmail", this.userEmail);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
         }
